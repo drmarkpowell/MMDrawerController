@@ -348,14 +348,17 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
         if(sideDrawerViewController){
             CGRect newFrame;
             CGRect oldFrame = self.centerContainerView.frame;
+
+            BOOL drawerIsOpen = [UIScreen mainScreen].bounds.size.width > oldFrame.size.width;
+
             if(drawerSide == MMDrawerSideLeft){
                 newFrame = self.centerContainerView.frame;
                 newFrame.origin.x = self.maximumLeftDrawerWidth;
-                newFrame.size.width = oldFrame.size.width - self.maximumLeftDrawerWidth;
+                if (drawerIsOpen == NO) newFrame.size.width = oldFrame.size.width - self.maximumLeftDrawerWidth;
             }
             else {
                 newFrame = self.centerContainerView.frame;
-                newFrame.size.width = oldFrame.size.width - self.maximumRightDrawerWidth;
+                if (drawerIsOpen == NO) newFrame.size.width = oldFrame.size.width - self.maximumRightDrawerWidth;
             }
             
             CGFloat distance = ABS(CGRectGetMinX(oldFrame)-newFrame.origin.x);
