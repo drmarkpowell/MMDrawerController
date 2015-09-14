@@ -355,7 +355,6 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
             }
             else {
                 newFrame = self.centerContainerView.frame;
-                newFrame.origin.x = -self.maximumRightDrawerWidth;
                 newFrame.size.width = oldFrame.size.width - self.maximumRightDrawerWidth;
             }
             
